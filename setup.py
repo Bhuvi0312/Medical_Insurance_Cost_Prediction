@@ -1,0 +1,20 @@
+from setuptools import find_packages, setup
+from typing import List
+HYPEN_E_DOT = '-e .'
+def get_requirements(file_path:str) -> List[str]:
+    '''This functin will return the list of reaquirement
+    '''
+    requirements = []
+    with open(file_path) as file_obj:
+        requirements=file_obj.readlines()
+        requirements=[req.replace('\n','')for req in requirements]
+        if HYPEN_E_DOT in requirements:
+            requirements.remove(HYPEN_E_DOT)
+    return requirements
+
+setup(name='Medical_Insurance_Cost_Prediction',
+      version='0.0.1',
+      author='Bhuvana Sangari',
+      author_email='bhuvanasangari24@gmail.com',
+      packages=find_packages(),
+      install_requires=get_requirements('requirements.txt'))
